@@ -39,9 +39,13 @@ app.get("/api/capacity/:size", function(req, res) {
     });
 });
 
-app.get("/api/rating", function(req, res) {
-  db.any(`SELECT * FROM warehouses WHERE capacity_sq_ft = $1`, [req])
+app.get("/api/rating/:rating", function(req, res) {
+  console.log(req.params.rating);
+  db.any(`SELECT * FROM warehouses WHERE rating > $1 ORDER BY rating ASC`, [
+    req.params.rating
+  ])
     .then(function(data) {
+      console.log(res.json(data));
       res.json(data);
     })
     .catch(function(error) {
@@ -49,10 +53,10 @@ app.get("/api/rating", function(req, res) {
     });
 });
 
-app.get("/api/location", function(req, res) {
+app.get("/api/location/:long/:lat/:distance", function(req, res) {
   db.any(
-    `SELECT name, location, temperature, capacity_sq_ft FROM warehouses WHERE ST_DWithin(geom, ST_MakePoint(-2.5,53.2)::geography, $3);`,
-    [req]
+    `SELECT name, location, temperature, capacity_sq_ft FROM warehouses WHERE ST_DWithin(geom, ST_MakePoint($1,$2)::geography, $3);`,
+    [req.params.long, req.params.lat, req.params.distance]
   )
     .then(function(data) {
       res.json(data);

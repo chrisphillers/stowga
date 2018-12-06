@@ -1,0 +1,16 @@
+@import "defaults";
+
+.results {
+  display: flex;
+  align-items: center;
+  width: 80%;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    // align-items: left;
+
+    // margin: 1rem, 0;
+    background-color: white;
+  }
+}

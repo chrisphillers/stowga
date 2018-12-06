@@ -1,21 +1,13 @@
 @import "defaults";
 
-.app {
-  background-image: url(/img/topography-yellow-b72ba668eb8bbbc5a4bea8dee198392b.svg);
-
+.App {
   &__logo {
-    width: 100px;
-  }
-
-  img {
     width: 200px;
+    margin: 30px;
   }
-}
 
-.app__logo {
-  width: 200px;
-}
-
-img {
-  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //   justify-content: center;
 }

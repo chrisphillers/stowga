@@ -1,0 +1,10 @@
+@import "defaults";
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 80%;
+
+  margin: 0, 1rem;
+}
