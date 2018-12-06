@@ -1,0 +1,21 @@
+@import "defaults";
+
+.app {
+  background-image: url(/img/topography-yellow-b72ba668eb8bbbc5a4bea8dee198392b.svg);
+
+  &__logo {
+    width: 100px;
+  }
+
+  img {
+    width: 200px;
+  }
+}
+
+.app__logo {
+  width: 200px;
+}
+
+img {
+  width: 200px;
+}
