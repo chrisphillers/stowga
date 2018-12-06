@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Search from "./Search";
 import Results from "./Results";
+import {
+  fetchTemperature,
+  fetchCapacity,
+  fetchRating,
+  fetchLocation,
+  fetchAll
+} from "./FetchFactory";
 
 import "../styles/App.scss";
 
@@ -9,15 +16,21 @@ class App extends Component {
     super();
 
     this.state = {
-      warehouses: []
+      warehouses: [],
+      selectedOption: null
     };
-    this.receiveState = this.receiveState.bind(this);
+    this.receiveTemp = this.receiveTemp.bind(this);
+    this.fetchTemp = this.fetchTemp.bind(this);
   }
 
-  receiveState(warehousesArr) {
-    console.log(warehousesArr);
-    this.setState({ warehouses: warehousesArr });
-    console.log(this.state);
+  receiveTemp(temperature) {
+    this.setState({ selectedOption: temperature }, () => {
+      this.fetchTemp();
+    });
+  }
+
+  fetchTemp() {
+    this.setState({ warehouses: fetchTemperature(this.state.selectedOption) });
   }
 
   render() {
@@ -247,8 +260,8 @@ class App extends Component {
     return (
       <div className="App">
         <img className="App__logo" src="/img/logo.png" alt="logo" />
-        <Search receiveState={this.receiveState} />
-        {warehouseArr.map(warehouse => (
+        <Search receiveTemp={this.receiveTemp} />
+        {this.state.warehouses.map(warehouse => (
           <Results warehouseInfo={warehouse} key={warehouse.name} />
         ))}
       </div>

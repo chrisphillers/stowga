@@ -7,9 +7,9 @@ export function fetchTemperature(tempCat) {
   fetch(`/api/temperature/${tempCat.value}`)
     .then(res => res.json())
     .then(body => {
-      console.log(body);
       // <App sendState={body}
       // receiveState(body);
+      console.log(body);
       return body;
     });
 }

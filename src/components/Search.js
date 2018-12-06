@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
 // import "./Search.scss";
-import {
-  fetchTemperature,
-  fetchCapacity,
-  fetchRating,
-  fetchLocation,
-  fetchAll
-} from "./FetchFactory";
 
 const options = [
   { value: "chilled", label: "Chilled" },
@@ -17,20 +10,22 @@ const options = [
 ];
 
 class Search extends Component {
-  state = {
-    selectedOption: null
-  };
+  state = {};
 
   componentDidMount() {
-    const tempCapacity = 10000;
-    fetchCapacity(tempCapacity);
+    // const tempCapacity = 10000;
+    // fetchCapacity(tempCapacity);
   }
 
+  // tempSelect = selectedOption => {
+  //   this.setState({ selectedOption }, () =>
+  //     // this.props.receiveTemp(fetchTemperature(this.state.selectedOption))
+  //     fetchTemperature(this.state.selectedOption)
+  //   );
+  // };
+
   tempSelect = selectedOption => {
-    this.setState({ selectedOption }, () =>
-      // this.props.receiveState(fetchTemperature(this.state.selectedOption))
-      fetchTemperature(this.state.selectedOption)
-    );
+    this.props.receiveTemp(selectedOption);
   };
 
   render() {
