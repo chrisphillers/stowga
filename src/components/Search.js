@@ -26,10 +26,10 @@ const capacity = [
   { value: 50001, label: "+ 50,000" }
 ];
 const distance = [
-  { value: 10, label: "10 Km" },
-  { value: 30, label: "30 Km" },
-  { value: 60, label: "60 Km" },
-  { value: 120, label: "120 Km" }
+  { value: 10000, label: "10 Km" },
+  { value: 30000, label: "30 Km" },
+  { value: 60000, label: "60 Km" },
+  { value: 120000, label: "120 Km" }
 ];
 
 class Search extends Component {
@@ -47,23 +47,29 @@ class Search extends Component {
     this.props.receiveCapacity(selectedCapacity);
   };
 
-  // locationSubmit = event => {
-  //   event.preventDefault();
-  //   this.props.receiveLocation(event);
-  // };
+  distanceChange = selectedDistance => {
+    this.props.receiveDistance(selectedDistance);
+  };
 
-  locationChange(event) {
-    this.props.receiveLocation({ [event.target.name]: event.target.value });
-  }
+  locationChange = (name, value) => {
+    console.log(name, value);
+    this.props.receiveLocation({ [name]: value });
+  };
+
+  locationSubmit = event => {
+    event.preventDefault();
+    this.props.receiveLocationSubmit();
+  };
 
   render() {
-    const selectedTemp = this.props.selectedTemp;
-    // const selectedRating = this.props.selectedRating;
-    const selectedRating = this.props.selectedRating;
-    const selectedCapacity = this.props.selectedCapacity;
-    const selectedLon = this.props.selectedLon;
-    const selectedLat = this.props.selectedLat;
-    const selectedDistance = this.props.selectedDistance;
+    const {
+      selectedTemp,
+      selectedRating,
+      selectedCapacity,
+      selectedDistance,
+      selectedLat,
+      selectedLon
+    } = this.props;
 
     return (
       <div className="search">
@@ -94,28 +100,31 @@ class Search extends Component {
         />
         <form
           className="search__form"
-          onSubmit={event => this.props.locationSubmit(event)}
+          onSubmit={event => this.locationSubmit(event)}
+          // onChange={console.log}
         >
           Location: All warehouses within
           <Select
             value={selectedDistance}
-            onChange={this.locationChange}
+            onChange={this.distanceChange}
             options={distance}
           />
           <span className="search__lonlat">
-            of Long:
+            <label>of Longitude:</label>
             <input
-              type="text"
+              type="number"
               placeholder="Longitude"
+              name="Lon"
               value={selectedLon}
-              onChange={this.locationChange}
+              onChange={event => this.locationChange("Lon", event.target.value)}
             />
-            Lat:
+            <label>Latitude:</label>
             <input
-              type="text"
+              type="number"
               placeholder="Latitude"
+              name="Lat"
               value={selectedLat}
-              onChange={this.locationChange}
+              onChange={event => this.locationChange("Lat", event.target.value)}
             />
             <button>Calculate</button>
           </span>
