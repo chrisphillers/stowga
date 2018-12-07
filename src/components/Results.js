@@ -4,7 +4,6 @@ import "../styles/Results.scss";
 class Results extends Component {
   render() {
     const warehouse = this.props.warehouseInfo;
-    console.log(this.props.warehouseInfo);
     return (
       <div className="results">
         <ul className="results__wrap">

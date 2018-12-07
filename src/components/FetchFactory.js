@@ -12,26 +12,22 @@ export function fetchCapacity(capacityCat) {
   return fetch(`/api/capacity/${capacityCat.value}`)
     .then(res => res.json())
     .then(body => {
-      console.log(body);
       return body;
     });
 }
 
 export function fetchRating(ratingCat) {
-  console.log(ratingCat);
   return fetch(`/api/rating/${ratingCat.value}`)
     .then(res => res.json())
     .then(body => {
-      console.log(body);
       return body;
     });
 }
 
-export function fetchLocation(long, lat, dist) {
-  return fetch(`/api/location/${long}/${lat}/${dist}`)
+export function fetchLocation(lon, lat, dist) {
+  return fetch(`/api/location/${lon}/${lat}/${dist}`)
     .then(res => res.json())
     .then(body => {
-      console.log(body);
       return body;
     });
 }
@@ -40,7 +36,6 @@ export function fetchAll(tempCat) {
   return fetch(`/api/all/${tempCat}`)
     .then(res => res.json())
     .then(body => {
-      console.log(body);
       return body;
     });
 }

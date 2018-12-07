@@ -16,7 +16,6 @@ const db = pgp({
 app.use(bodyParser.json());
 
 app.get("/api/temperature/:temp", function(req, res) {
-  console.log(req, res);
   const temp = req.params.temp;
   db.any(`SELECT * FROM warehouses WHERE temperature = $1`, [temp])
     .then(function(data) {
@@ -28,7 +27,6 @@ app.get("/api/temperature/:temp", function(req, res) {
 });
 
 app.get("/api/capacity/:size", function(req, res) {
-  console.log("called", req.params.size);
   db.any(`SELECT * FROM warehouses WHERE capacity_sq_ft > $1`, [
     req.params.size
   ])
@@ -46,7 +44,6 @@ app.get("/api/rating/:rating", function(req, res) {
     req.params.rating
   ])
     .then(function(data) {
-      console.log(res.json(data));
       res.json(data);
     })
     .catch(function(error) {
@@ -54,10 +51,10 @@ app.get("/api/rating/:rating", function(req, res) {
     });
 });
 
-app.get("/api/location/:long/:lat/:dist", function(req, res) {
+app.get("/api/location/:lon/:lat/:dist", function(req, res) {
   db.any(
-    `SELECT name, location, temperature, capacity_sq_ft FROM warehouses WHERE ST_DWithin(geom, ST_MakePoint($1,$2)::geography, $3);`,
-    [req.params.long, req.params.lat, req.params.dist]
+    `SELECT name, location, rating, temperature, capacity_sq_ft FROM warehouses WHERE ST_DWithin(geom, ST_MakePoint($1,$2)::geography, $3);`,
+    [req.params.lon, req.params.lat, req.params.dist]
   )
     .then(function(data) {
       res.json(data);

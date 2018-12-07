@@ -48,3 +48,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Windows install - https://www.openscg.com/bigsql/docs/postgis/postgis.jsp/
 
 https://www.compose.com/articles/geofile-everything-in-the-radius-with-postgis/
+# stowga
