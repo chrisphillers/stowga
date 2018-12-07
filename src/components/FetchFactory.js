@@ -27,8 +27,8 @@ export function fetchRating(ratingCat) {
     });
 }
 
-export function fetchLocation(tempCat) {
-  return fetch(`/api/location/${tempCat}`)
+export function fetchLocation(long, lat, dist) {
+  return fetch(`/api/location/${long}/${lat}/${dist}`)
     .then(res => res.json())
     .then(body => {
       console.log(body);

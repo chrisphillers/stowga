@@ -8,10 +8,18 @@ class Results extends Component {
     return (
       <div className="results">
         <ul className="results__wrap">
-          <li>Name: {warehouse.name}</li>
-          <li>Location: {warehouse.location}</li>
-          <li>Rating: {warehouse.rating}</li>
-          <li>Temperature: {warehouse.temperature}</li>
+          <li>
+            <b>Name:</b> {warehouse.name}
+          </li>
+          <li>
+            <b>Location:</b> {warehouse.location}
+          </li>
+          <li>
+            <b>Rating:</b> {warehouse.rating}
+          </li>
+          <li>
+            <b>Temperature:</b> {warehouse.temperature}
+          </li>
         </ul>
       </div>
     );

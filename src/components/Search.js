@@ -23,30 +23,21 @@ const capacity = [
   { value: 5000, label: "Less than 5000" },
   { value: 10000, label: "0 - 10000" },
   { value: 50000, label: "0 - 50,000" },
-  { value: 50001, label: "+50,000" }
+  { value: 50001, label: "+ 50,000" }
 ];
 const distance = [
-  { value: 10, label: "10Kms" },
-  { value: 30, label: "30Kms" },
-  { value: 60, label: "60Kms" },
-  { value: 120, label: "120Kms" }
+  { value: 10, label: "10 Km" },
+  { value: 30, label: "30 Km" },
+  { value: 60, label: "60 Km" },
+  { value: 120, label: "120 Km" }
 ];
 
 class Search extends Component {
-  state = {};
-
-  componentDidMount() {
-    // const tempCapacity = 10000;
-    // fetchCapacity(tempCapacity);
-  }
+  componentDidMount() {}
 
   tempSelect = selectedTemp => {
     this.props.receiveTemp(selectedTemp);
   };
-
-  // onStarClick(nextValue, prevValue, name) {
-  //   this.setState({ rating: nextValue });
-  // }
 
   ratingSelect = selectedRating => {
     this.props.receiveRating(selectedRating);
@@ -56,18 +47,22 @@ class Search extends Component {
     this.props.receiveCapacity(selectedCapacity);
   };
 
-  locationSubmit = event => {
-    event.preventDefault();
-    this.props.receiveLocation(event);
-  };
+  // locationSubmit = event => {
+  //   event.preventDefault();
+  //   this.props.receiveLocation(event);
+  // };
 
-  locationChange = event => {};
+  locationChange(event) {
+    this.props.receiveLocation({ [event.target.name]: event.target.value });
+  }
 
   render() {
     const selectedTemp = this.props.selectedTemp;
     // const selectedRating = this.props.selectedRating;
     const selectedRating = this.props.selectedRating;
     const selectedCapacity = this.props.selectedCapacity;
+    const selectedLon = this.props.selectedLon;
+    const selectedLat = this.props.selectedLat;
     const selectedDistance = this.props.selectedDistance;
 
     return (
@@ -97,26 +92,33 @@ class Search extends Component {
           onChange={this.capacitySelect}
           options={capacity}
         />
-        <form onSubmit={event => this.props.locationSubmit(event)}>
+        <form
+          className="search__form"
+          onSubmit={event => this.props.locationSubmit(event)}
+        >
           Location: All warehouses within
           <Select
             value={selectedDistance}
             onChange={this.locationChange}
             options={distance}
           />
-          of Long:
-          <input
-            type="text"
-            placeholder="Long"
-            onChange={event => this.locationChange(event)}
-          />
-          Lat:
-          <input
-            type="text"
-            placeholder="Lat"
-            onChange={event => this.props.locationChange(event)}
-          />
-          <button />
+          <span className="search__lonlat">
+            of Long:
+            <input
+              type="text"
+              placeholder="Longitude"
+              value={selectedLon}
+              onChange={this.locationChange}
+            />
+            Lat:
+            <input
+              type="text"
+              placeholder="Latitude"
+              value={selectedLat}
+              onChange={this.locationChange}
+            />
+            <button>Calculate</button>
+          </span>
         </form>
       </div>
     );

@@ -1,4 +1,4 @@
-$primary-color: #252525;
+$primary-color: rgb(69, 90, 100);
 $background-color: #ffffff;
 $font-family: "Open Sans", sans-serif;
 
@@ -29,4 +29,7 @@ a:hover a:active {
 }
 
 h2 {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 3px;
 }

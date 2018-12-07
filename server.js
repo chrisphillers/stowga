@@ -28,6 +28,7 @@ app.get("/api/temperature/:temp", function(req, res) {
 });
 
 app.get("/api/capacity/:size", function(req, res) {
+  console.log("called", req.params.size);
   db.any(`SELECT * FROM warehouses WHERE capacity_sq_ft > $1`, [
     req.params.size
   ])
@@ -53,10 +54,10 @@ app.get("/api/rating/:rating", function(req, res) {
     });
 });
 
-app.get("/api/location/:long/:lat/:distance", function(req, res) {
+app.get("/api/location/:long/:lat/:dist", function(req, res) {
   db.any(
     `SELECT name, location, temperature, capacity_sq_ft FROM warehouses WHERE ST_DWithin(geom, ST_MakePoint($1,$2)::geography, $3);`,
-    [req.params.long, req.params.lat, req.params.distance]
+    [req.params.long, req.params.lat, req.params.dist]
   )
     .then(function(data) {
       res.json(data);

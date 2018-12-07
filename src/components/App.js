@@ -5,8 +5,7 @@ import {
   fetchTemperature,
   fetchCapacity,
   fetchRating,
-  fetchLocation,
-  fetchAll
+  fetchLocation
 } from "./FetchFactory";
 
 import "../styles/App.scss";
@@ -21,6 +20,8 @@ class App extends Component {
       selectedRating: null,
       selectedCapacity: null,
       selectedDistance: null,
+      selectedLon: null,
+      selectedLat: null,
       allSelected: null
     };
     this.receiveTemp = this.receiveTemp.bind(this);
@@ -51,12 +52,15 @@ class App extends Component {
     });
   }
 
-  receiveLocation(location) {
-    this.setState({ selectedLocation: location }, () => {
-      fetchLocation(this.state.selectedRating).then(body => {
-        this.setState({ warehouses: body });
-      });
-    });
+  receiveLocation(name, value) {
+    this.setState(
+      { [name]: value }
+      // , () => {
+      // fetchLocation(this.state.selectedRating).then(body => {
+      //   this.setState({ warehouses: body });
+      // });
+      // }
+    );
   }
 
   render() {
@@ -68,10 +72,13 @@ class App extends Component {
           receiveRating={this.receiveRating}
           receiveCapacity={this.receiveCapacity}
           receiveLocation={this.receiveLocation}
+          // receiveLocationStates={this.receiveLocationStates}
           selectedTemp={this.state.selectedTemp}
           selectedRating={this.state.selectedRating}
           selectedCapacity={this.state.selectedCapacity}
-          selectedLocation={this.state.selectedLocation}
+          selectedDistance={this.state.selectedDistance}
+          selectedLon={this.state.selectedLon}
+          selectedLat={this.state.selectedLat}
         />
         {this.state.warehouses.map(warehouse => (
           <Results warehouseInfo={warehouse} key={warehouse.name} />
