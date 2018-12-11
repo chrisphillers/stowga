@@ -43,9 +43,14 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## PostGres Setup info
+
+Import the warehouses.csv file in to pgweb
+
 ## PostGIS Setup info
 
 Windows install - https://www.openscg.com/bigsql/docs/postgis/postgis.jsp/
 
 https://www.compose.com/articles/geofile-everything-in-the-radius-with-postgis/
+
 # stowga

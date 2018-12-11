@@ -14,11 +14,15 @@
     "react-scripts": "2.1.1",
     "react-select": "^2.1.2"
   },
+  "engines": {
+    "node": "10.10.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
