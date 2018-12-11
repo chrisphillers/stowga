@@ -53,6 +53,8 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+### DB Side Installations
+
 ## PostGres Installation info
 
 Install both Postgres and Pgweb
@@ -64,5 +66,3 @@ Installation instruction at https://github.com/sosedoff/pgweb/wiki/Installation
 ## PostGIS Installation info
 
 https://postgis.net/install/
-
-# stowga
