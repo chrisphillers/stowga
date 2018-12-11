@@ -1,3 +1,13 @@
+1. Run "npm install".
+2. Rebuild the database in postGres/Pgweb (see bottom of readme for installation instructions).
+3. Run the top section of the SQL rebuild file in pgweb.
+4. Import csv data into Postgres, use second section of SQL rebuild file.
+5. Install PostGIS, see bottom of readme (optional - this allows the use of the distance/location filter).
+6. Run the third part of the SQL rebuild file in pgweb.
+7. "node server.js" to run the server.
+8. "npm start" to start the app.
+9. Go to http://localhost.com/8080
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -43,10 +53,16 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## PostGIS Setup info
+## PostGres Installation info
 
-Windows install - https://www.openscg.com/bigsql/docs/postgis/postgis.jsp/
+Install both Postgres and Pgweb
 
-https://www.compose.com/articles/geofile-everything-in-the-radius-with-postgis/
+Download as app from http://postgresapp.com/
+
+Installation instruction at https://github.com/sosedoff/pgweb/wiki/Installation
+
+## PostGIS Installation info
+
+https://postgis.net/install/
 
 # stowga

@@ -15,6 +15,18 @@ const db = pgp({
 
 app.use(bodyParser.json());
 
+app.get("/api/temperature/", function(req, res) {
+  console.log(req, res);
+  const temp = req.params.temp;
+  db.any(`SELECT * FROM warehouses`, [temp])
+    .then(function(data) {
+      res.json(data);
+    })
+    .catch(function(error) {
+      res.json({ error: error.message });
+    });
+});
+
 app.get("/api/temperature/:temp", function(req, res) {
   const temp = req.params.temp;
   db.any(`SELECT * FROM warehouses WHERE temperature = $1`, [temp])
